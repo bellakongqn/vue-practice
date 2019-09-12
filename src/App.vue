@@ -44,6 +44,21 @@
             <p>item slot-scope {{ props.value }}</p>
           </template>
         </Slot>
+
+        <PersonalInfo v-model="phoneInfo" :zip-code.sync="zipCode" />
+        <!-- 多个数据需要在表单里联动 :zip-code.sync-->
+
+        <!-- <PersonalInfo
+          :phone-info="phoneInfo"
+          :zip-code="zipCode"
+          @change="val => (phoneInfo = val)"
+          @update:zipCode="val => (zipCode = val)"
+        /> -->
+
+         phoneInfo： {{ phoneInfo }}
+          <br />
+          zipCode： {{ zipCode }}
+        
     </div>
 </template>
 
@@ -52,6 +67,7 @@ import TodoItem from './components/TodoItem'
 import PropsDemo from './components/PropsDemo'
 import Event from './components/Event'
 import Slot from './components/Slot'
+import PersonalInfo from './components/PersonInfo'
 
 export default {
   name: 'app',
@@ -62,6 +78,11 @@ export default {
         name: "",
         test2:"text3333",
         type: "success",
+        phoneInfo: {
+          areaCode: "+86",
+          phone: ""
+        },
+        zipCode: ""
      }
   },
   methods:{
@@ -81,7 +102,8 @@ export default {
     TodoItem,
     PropsDemo,
     Event,
-    Slot
+    Slot,
+    PersonalInfo
   }
   
 }
