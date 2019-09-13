@@ -69,6 +69,21 @@
         <Watch />
         <Computed1 />
         <Watch1/>
+        <button @click="destroyClock = !destroyClock">
+          {{ destroyClock ? "加载时钟" : "销毁时钟" }}
+        </button>
+        <Life v-if="!destroyClock" />
+
+        <Functional :name="name" />
+        <TempVar
+          :var1="`hello ${name}`"
+          :var2="destroyClock ? 'hello vue' : 'hello world'"
+        >
+          <template v-slot="{ var1, var2 }">
+            {{ var1 }}
+            {{ var2 }}
+          </template>
+        </TempVar>
 
         
     </div>
@@ -85,6 +100,9 @@ import Computed from './components/Computed'
 import Watch from './components/Watch'
 import Computed1 from './components/Computed1'
 import Watch1 from './components/Watch1'
+import Life from './components/Life'
+import Functional from './components/Functional'
+import TempVar from './components/TempVar'
 
 
 export default {
@@ -93,7 +111,7 @@ export default {
      return{
         info:'',
         list:[],
-        name: "",
+        name: "vue",
         test2:"text3333",
         type: "success",
         phoneInfo: {
@@ -104,7 +122,8 @@ export default {
         person:{
           number:''
         },
-        title:[1,2,3]
+        title:[1,2,3],
+        destroyClock:false,
      }
   },
   methods:{
@@ -137,7 +156,10 @@ export default {
     Computed,
     Watch,
     Computed1,
-    Watch1
+    Watch1,
+    Life,
+    Functional,
+    TempVar
   }
   
 }
