@@ -65,6 +65,11 @@
         </p>
 
         <PropsData :person="person" :title="title"/>
+        <Computed />
+        <Watch />
+        <Computed1 />
+        <Watch1/>
+
         
     </div>
 </template>
@@ -76,6 +81,10 @@ import Event from './components/Event'
 import SlotDemo from './components/Slot'
 import PersonalInfo from './components/PersonInfo'
 import PropsData from './components/PropsData'
+import Computed from './components/Computed'
+import Watch from './components/Watch'
+import Computed1 from './components/Computed1'
+import Watch1 from './components/Watch1'
 
 
 export default {
@@ -124,7 +133,11 @@ export default {
     Event,
     SlotDemo,
     PersonalInfo,
-    PropsData
+    PropsData,
+    Computed,
+    Watch,
+    Computed1,
+    Watch1
   }
   
 }
