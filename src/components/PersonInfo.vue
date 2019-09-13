@@ -28,7 +28,7 @@ export default {
      name: "PersonalInfo",
     //  mode 允许一个自定义组件在使用v-model时自定义prop 和 event
     //  一个组件上的v-model会把value作为prop并且把input用作event
-    // 但是一些输入类型复选框之类的可能想通过value prop 达到不同的目的 ,使用modelk可以避免冲突
+    //  但是一些输入类型复选框之类的可能想通过value prop 达到不同的目的 ,使用modelk可以避免冲突
     model: {
         prop: "phoneInfo", // 默认 value
         event: "change" // 默认 input

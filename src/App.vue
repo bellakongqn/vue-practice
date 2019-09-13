@@ -34,7 +34,7 @@
 
         <Event :name="name" @change="handleEventChange" />
 
-        <Slot>
+        <SlotDemo>
           <p>default slot</p>
           <template v-slot:title>
             <p>title slot1</p>
@@ -43,7 +43,7 @@
           <template v-slot:item="props">
             <p>item slot-scope {{ props.value }}</p>
           </template>
-        </Slot>
+        </SlotDemo>
 
         <PersonalInfo v-model="phoneInfo" :zip-code.sync="zipCode" />
         <!-- 多个数据需要在表单里联动 :zip-code.sync-->
@@ -58,6 +58,13 @@
          phoneInfo： {{ phoneInfo }}
           <br />
           zipCode： {{ zipCode }}
+
+        <p>
+          <button @click="handlePersonChange">change this.Person</button>
+          <button @click="handleTitleChange">change this.title</button>
+        </p>
+
+        <PropsData :person="person" :title="title"/>
         
     </div>
 </template>
@@ -66,8 +73,10 @@
 import TodoItem from './components/TodoItem'
 import PropsDemo from './components/PropsDemo'
 import Event from './components/Event'
-import Slot from './components/Slot'
+import SlotDemo from './components/Slot'
 import PersonalInfo from './components/PersonInfo'
+import PropsData from './components/PropsData'
+
 
 export default {
   name: 'app',
@@ -82,7 +91,11 @@ export default {
           areaCode: "+86",
           phone: ""
         },
-        zipCode: ""
+        zipCode: "",
+        person:{
+          number:''
+        },
+        title:[1,2,3]
      }
   },
   methods:{
@@ -97,13 +110,21 @@ export default {
       handleEventChange(val) {
         this.name = val;
       },
+      handlePersonChange(){
+        this.person.number = 1;
+        // this.$set(this.info, 'number', 1)
+      },
+      handleTitleChange(){
+         this.title.concat[1, 2, 3];
+      }
   },
   components: {
     TodoItem,
     PropsDemo,
     Event,
-    Slot,
-    PersonalInfo
+    SlotDemo,
+    PersonalInfo,
+    PropsData
   }
   
 }
