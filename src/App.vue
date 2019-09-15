@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+        <Spike :start-time="startTime" :end-time="endTime" />
         <VNodes :vnodes="getJSXSpan()" />
         <ComponentA />
         <Jsx >
@@ -53,7 +54,12 @@
           </template>
         </SlotDemo>
 
-        <PersonalInfo v-model="phoneInfo" :zip-code.sync="zipCode" />
+        <PersonalInfo 
+        v-model="phoneInfo" 
+        required
+        message="手机号为空或不合法"
+        :zip-code.sync="zipCode"
+        :validate="validate" />
         <!-- 多个数据需要在表单里联动 :zip-code.sync-->
 
         <!-- <PersonalInfo
@@ -98,6 +104,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import TodoItem from './components/TodoItem'
 import PropsDemo from './components/PropsDemo'
 import Event from './components/Event'
@@ -113,12 +120,15 @@ import Functional from './components/Functional'
 import TempVar from './components/TempVar'
 import ComponentA from './components/ComponentA'
 import Jsx from './components/Jsx.js'
+import Spike from './components/Spike'
 
 
 export default {
   name: 'app',
   data: ()=>{
      return{
+        startTime: moment("2019-09-15 14:05:00"),
+        endTime: moment("2019-09-17 14:20:00"),
         info:'',
         list:[],
         name: "vue",
@@ -158,6 +168,9 @@ export default {
       getJSXSpan() {
         return <span>Message: hellao</span>;
       },
+      validate(phone = "") {
+        return phone && /^1[0-9]{10}$/.test(phone);
+      }
   },
   components: {
     TodoItem,
@@ -178,7 +191,8 @@ export default {
     VNodes: {
       functional: true,
       render: (h, ctx) => ctx.props.vnodes
-    }
+    },
+    Spike
   }
   
 }

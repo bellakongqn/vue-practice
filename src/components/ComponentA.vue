@@ -9,27 +9,26 @@
 
 <script>
 
+import Vue from 'vue'
 import ComponentB from './ComponentB'
+
 export default {
     name:"ComponentA",
     provide(){
+        this.theme = Vue.observable({
+            color:"yellow",
+        })
         return{
-            theme: this
-        }
-
-    },
-    data:function(){
-        return{
-            color: "blue"
+            theme: this.theme
         }
 
     },
     methods:{
         changeColor(color){
             if (color) {
-                this.color = color;
+                this.theme.color = color;
             } else {
-                this.color = this.color === "blue" ? "red" : "blue";
+                this.theme.color = this.theme.color === "blue" ? "red" : "blue";
             }
         }
     },

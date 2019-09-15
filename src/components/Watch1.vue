@@ -7,6 +7,7 @@
   </div>
 </template>
 <script>
+import { setTimeout, clearTimeout } from 'timers';
 export default {
   data: function() {
     return {
@@ -17,10 +18,16 @@ export default {
   },
   watch: {
     firstName: function(val) {
-      this.fullName = val + " " + this.lastName;
+      clearTimeout(this.firstTimeout)
+      this.firstTimeout = setTimeout(()=>{
+        this.fullName = val + " " + this.lastName;
+      },500)
     },
     lastName: function(val) {
-      this.fullName = this.firstName + " " + val;
+      clearTimeout(this.lastTimeout)
+      this.lastTimeout = setTimeout(()=>{
+        this.fullName = this.firstName + " " + val;
+      },500)
     }
   },
 };
