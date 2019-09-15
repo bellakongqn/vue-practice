@@ -9,7 +9,6 @@
 import moment from "moment";
 export default {
   data: function() {
-    console.log("data");
     this.moment = moment;
     this.log = window.console.log;
     return {
@@ -23,30 +22,22 @@ export default {
     }
   },
   beforeCreate() {
-    console.log("beforeCreate");
   },
   created() {
-    console.log("created");
   },
   beforeMount() {
-    console.log("beforeMount");
   },
   mounted() {
-    console.log("mounted");
     this.startClock();
   },
   beforeUpdate() {
-    console.log("beforeUpdate");
   },
   updated() {
-    console.log("updated");
   },
   beforeDestroy() {
-    console.log("beforeDestroy");
     clearInterval(this.clockInterval);
   },
   destroyed() {
-    console.log("destroyed");
   },
   methods: {
     startClock() {

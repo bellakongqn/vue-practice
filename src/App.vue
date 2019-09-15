@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+        <ComponentA />
         <div>
             <input type="text" v-model="info"/>
             <button @click="handleClick">添加</button>
@@ -103,6 +104,7 @@ import Watch1 from './components/Watch1'
 import Life from './components/Life'
 import Functional from './components/Functional'
 import TempVar from './components/TempVar'
+import ComponentA from './components/ComponentA'
 
 
 export default {
@@ -159,7 +161,8 @@ export default {
     Watch1,
     Life,
     Functional,
-    TempVar
+    TempVar,
+    ComponentA
   }
   
 }
