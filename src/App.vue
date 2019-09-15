@@ -1,6 +1,13 @@
 <template>
   <div id="app">
+        <VNodes :vnodes="getJSXSpan()" />
         <ComponentA />
+        <Jsx >
+        hello world
+        </Jsx>
+        <Jsx :level="3" >
+          hello world
+        </Jsx>
         <div>
             <input type="text" v-model="info"/>
             <button @click="handleClick">添加</button>
@@ -105,6 +112,7 @@ import Life from './components/Life'
 import Functional from './components/Functional'
 import TempVar from './components/TempVar'
 import ComponentA from './components/ComponentA'
+import Jsx from './components/Jsx.js'
 
 
 export default {
@@ -146,7 +154,10 @@ export default {
       },
       handleTitleChange(){
          this.title.concat[1, 2, 3];
-      }
+      },
+      getJSXSpan() {
+        return <span>Message: hellao</span>;
+      },
   },
   components: {
     TodoItem,
@@ -162,7 +173,12 @@ export default {
     Life,
     Functional,
     TempVar,
-    ComponentA
+    ComponentA,
+    Jsx,
+    VNodes: {
+      functional: true,
+      render: (h, ctx) => ctx.props.vnodes
+    }
   }
   
 }
