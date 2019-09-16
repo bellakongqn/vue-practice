@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+        <Dync />
         <Spike :start-time="startTime" :end-time="endTime" />
         <VNodes :vnodes="getJSXSpan()" />
         <ComponentA />
@@ -121,6 +122,7 @@ import TempVar from './components/TempVar'
 import ComponentA from './components/ComponentA'
 import Jsx from './components/Jsx.js'
 import Spike from './components/Spike'
+import Dync from './components/Dync'
 
 
 export default {
@@ -192,7 +194,8 @@ export default {
       functional: true,
       render: (h, ctx) => ctx.props.vnodes
     },
-    Spike
+    Spike,
+    Dync
   }
   
 }
