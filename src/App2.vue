@@ -16,11 +16,23 @@
                 @change="toggleAll(!allChecked)">
             <label for="toggle-all"></label>
             <ul class="todo-list">
-                <li 
-                v-for="(todo, index) in todos"
-                :key="index">{{todo}}</li>
+                <TodoItem v-for="(todo, index) in filteredTodos"
+                    :key="index"
+                    :todo="todo" />
             </ul>
         </section>
+        <footer>
+            <span class="todo-count">
+                <strong>{{ remaining }} item left</strong>
+            </span>
+            <ul class="filters">
+                <li v-for="(val, key) in filters" :key="key">
+                <a :href="'#/' + key"
+                    @click="visibility = key">{{ key | capitalize }}</a>
+                </li>
+            </ul>
+            <button v-show="todos.length"  @click="clearCompleted">clear</button>
+        </footer>
     </section>
     
 </template>
@@ -28,7 +40,22 @@
 <script>
 
 import { mapActions } from 'vuex'
+import TodoItem from './TodoItem'
+
+const filters = {
+  all: todos => todos,
+  active: todos => todos.filter(todo => !todo.done),
+  completed: todos => todos.filter(todo => todo.done)
+}
+
 export default {
+
+    data () {
+        return {
+        visibility: 'all',
+        filters: filters
+        }
+    },
 
     computed:{
         todos () {
@@ -37,11 +64,18 @@ export default {
         allChecked () {
             return this.todos.every(todo => todo.done)
         },
+        remaining () {
+            return this.todos.filter(todo => !todo.done).length
+        },
+        filteredTodos () {
+            return filters[this.visibility](this.todos)
+        },
 
     },
     methods:{
         ...mapActions([
-            'toggleAll'
+            'toggleAll',
+            'clearCompleted'
         ]),
         addTodo (e) {
             const text = e.target.value
@@ -51,7 +85,12 @@ export default {
             e.target.value = ''
         },
     },
+    filters: {
+            pluralize: (n, w) => n === 1 ? w : (w + 's'),
+            capitalize: s => s.charAt(0).toUpperCase() + s.slice(1)
+    },
     components:{
+        TodoItem
     }
     
 }

@@ -1,4 +1,11 @@
-
+<!-- 单条添加todo -->
+<!-- 单条删除todo -->
+<!-- 双击编辑todo -->
+<!-- 单条todo已完成相应样式状态改变 -->
+<!-- 全部todo是已完成相应样式状态改变 -->
+<!-- 清除全部已完成todos -->
+<!-- 待办todos数量显示 -->
+<!-- 所有todos，已完成todos，未完成todos筛选 -->
 // <my-checkbox v-model="foo" value="some value"></my-checkbox>
 
 // model: {
