@@ -28,7 +28,7 @@
             <ul class="filters">
                 <li v-for="(val, key) in filters" :key="key">
                 <a :href="'#/' + key"
-                    @click="visibility = key">{{ key | capitalize }}</a>
+                    @click="visibility = key">{{ key }}</a>
                 </li>
             </ul>
             <button v-show="todos.length"  @click="clearCompleted">clear</button>
@@ -68,7 +68,14 @@ export default {
             return this.todos.filter(todo => !todo.done).length
         },
         filteredTodos () {
-            return filters[this.visibility](this.todos)
+            switch(this.visibility){
+                case 'all' :
+                    return this.todos
+                case 'active':
+                    return this.todos.filter(todo => !todo.done)
+                case 'completed' :
+                    return this.todos.filter(todo => todo.done)
+            }
         },
 
     },
@@ -84,10 +91,6 @@ export default {
             }
             e.target.value = ''
         },
-    },
-    filters: {
-            pluralize: (n, w) => n === 1 ? w : (w + 's'),
-            capitalize: s => s.charAt(0).toUpperCase() + s.slice(1)
     },
     components:{
         TodoItem
