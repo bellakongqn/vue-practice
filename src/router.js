@@ -24,7 +24,14 @@ const routes = [
             { path: "computer", component: computer}
         ]
     },
-    { path: "/about", component: about },
+    { path: "/about",
+    // 命名视图
+      components:{
+        default: about,
+        a: tablet,
+        b: computer
+      }
+    },
     // 新增user路径，配置了动态的id
     { path: "/user/:id",name: 'user' , component: user }
 ]

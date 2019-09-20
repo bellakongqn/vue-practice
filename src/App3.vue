@@ -10,7 +10,9 @@
       <button @click="goList">去列表</button>
     </header>
     <!-- 对应的组件内容渲染到router-view中 -->
-    <router-view></router-view>   
+    <router-view ></router-view>
+    <router-view  name="a"></router-view>
+    <router-view  name="b"></router-view>
   </div>
 </template>
 
