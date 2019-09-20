@@ -15,7 +15,7 @@ Vue.use(VueRouter);
 const routes = [
     // 重定向
     { path: '/',  redirect: '/home' },
-    { path:"/home", component: home ,
+    { path:"/home", name: 'home', component: home ,
     // 子路由
         children: [
             { path: "",  component: phone},
@@ -26,7 +26,7 @@ const routes = [
     },
     { path: "/about", component: about },
     // 新增user路径，配置了动态的id
-    { path: "/user/:id", component: user }
+    { path: "/user/:id",name: 'user' , component: user }
 ]
 
 var router =  new VueRouter({
