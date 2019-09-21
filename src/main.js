@@ -1,13 +1,13 @@
 import Vue from 'vue'
-import App from './App3.vue'
-// import store from './store2/index'
-import router from './router'
+import App from './App4.vue'
+import store from './store3/index'
+// import router from './router'
 
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
-  // store,
-  router,
+  store,
+  // router,
   render: h => h(App)
 })
